@@ -12,7 +12,7 @@ These are the components currently demonstrated:
 
 - `ceylon-tui` demonstrates a "text" component for the "text" shell with localized messages
 - `ceylon-service` demonstrates a component discoverable by `ServiceLoader`
-- `ceylon-api` demonstrates an pure interface component with compatibility test fixture
+- `ceylon-api` demonstrates a pure interface component with compatibility test fixture
 - `ceylon-impl` demonstrates an implementation for `ceylon-api` with compatibility test
 
 # expected
