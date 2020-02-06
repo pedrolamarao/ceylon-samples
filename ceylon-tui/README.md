@@ -33,3 +33,11 @@ Notes in the source code are annotated as `#XXX` comments.
 Currently, this component explodes when trying to use `ResourceBundle` for localization.
 
 Apparently, the build tool fails to include `src/main/resources` inside the module.
+
+## Test Source Separation
+
+Currently, we don't know how to separate white-box test sources from the main module.
+
+We have no criticism towards module boundary separation: "open module" is nonsense.
+
+However, because test source separation is Good, the build tool should provide for it.
