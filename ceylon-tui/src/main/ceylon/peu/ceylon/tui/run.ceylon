@@ -160,10 +160,25 @@ Integer bar (InputStream in_, OutputStream out_)
 
 void fail (String cause)
 {
-	print("error: " + cause);
+	print(_T("error: %s", cause));
 }
 
 void help () 
 {
-	print("usage: peu.run [args]");
+	print(_T("__help"));
+}
+
+String _T (String message, String* arguments)
+{
+	import java.lang { Strong = String }
+	import java.util { ResourceBundle }
+	
+	value bundle = ResourceBundle.getBundle("peu.ceylon.tui.Messages");
+	
+	// XXX: Ceylon 1.3.3 has no "printf" like thing I could find
+	try { 
+		return Strong.format(bundle.getString(message), arguments); 
+	} catch (e) { 
+		return Strong.format(message, arguments); 
+	}
 }
