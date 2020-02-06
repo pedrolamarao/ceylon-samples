@@ -17,6 +17,7 @@ These are the components currently demonstrated:
 
 # expected
 
+- `ceylon-jnr` demonstrates applying JNR to define bindings to native
 - `ceylon-service-user` demonstrates a component dependent on `ceylon-service` with mock testing
 - `ceylon-osgi` demonstrates a component discoverable by OSGi Declarative Services
 - `ceylon-osgi-user` demonstrates a component dependent on `ceylon-osgi` with mock testing
