@@ -14,15 +14,15 @@ import java.lang {
 	ByteArray
 }
 
-shared void run() 
+shared void run () 
 {
 	// #XXX: Ceylon IDE 1.3.3 is annoyed that we ignore this return value
-	process.exit(main());
+	process.exit(main(process.arguments, System.\iin, System.\iout));
 }
 
-Integer main() 
+Integer main (String[] arguments, InputStream stdin, OutputStream stdout) 
 {
-	if (process.arguments.size < 1) {
+	if (arguments.size < 1) {
 		help();
 		return 0;
 	}
@@ -34,25 +34,25 @@ Integer main()
 	
 	// #XXX: Ceylon `for` iterator is immutable
 	variable Integer i = 0;
-	while (i < process.arguments.size) 
+	while (i < arguments.size) 
 	{
-		value argument = process.arguments[i++];		
+		value argument = arguments[i++];		
 		if (! exists argument) { continue; }
 		switch (argument)
 		case ("-a" | "--action") {
-			if (++i == process.arguments.size) { fail("'action' requires an argument"); return 1; }
-			action = process.arguments[i];
+			if (++i == arguments.size) { fail("'action' requires an argument"); return 1; }
+			action = arguments[i];
 		}
 		case ("-h") { 
 			helpArg = true;
 		}
 		case ("-i" | "--input") {
-			if (++i == process.arguments.size) { fail("'in' requires an argument"); return 1; }
-			inArg = process.arguments[i];
+			if (++i == arguments.size) { fail("'in' requires an argument"); return 1; }
+			inArg = arguments[i];
 		}
 		case ("-o" | "--output") {
-			if (++i == process.arguments.size) { fail("'out' requires an argument"); return 1; }
-			outArg = process.arguments[i];
+			if (++i == arguments.size) { fail("'out' requires an argument"); return 1; }
+			outArg = arguments[i];
 		}
 		// #XXX: Ceylon requires us to care about "default"
 		else { }
@@ -63,32 +63,17 @@ Integer main()
 		return 0;
 	}
 	
-	// #XXX: Ceylong doesn't like variables, but see below
-	if (! exists irrelevant = action) {
+	if (! action exists) {
 		fail("'action' is required");
 		return 1;
 	}
 	
-	InputStream in_;
-	if (exists p = inArg) {
-		in_ = FileInputStream(p);		
-	}
-	else {
-		in_ = System.\iin;
-	}
+	value in_ = (inArg exists) then FileInputStream(inArg) else stdin;	
+	value out_ = (outArg exists) then FileOutputStream(outArg) else stdout;
 	
-	OutputStream out_;
-	if (exists p = outArg) {
-		out_ = FileOutputStream(p);
-	}
-	else {
-		out_ = System.\iout;
-	}
-	
-	// #XXX: Ceylon is happy with variables here
 	value status = switch (action)
-		case ("foo") foo(in_, out_)
-		case ("bar") bar(in_, out_)
+		case ("foo") foo(arguments, in_, out_)
+		case ("bar") bar(arguments, in_, out_)
 		else 1;
 	
 	in_.close();
@@ -97,7 +82,7 @@ Integer main()
 	return status;	
 }
 
-Integer foo (InputStream in_, OutputStream out_)
+Integer foo (String[] arguments, InputStream in_, OutputStream out_)
 {
 	value buffer = ByteArray(4096);
 	
@@ -112,20 +97,20 @@ Integer foo (InputStream in_, OutputStream out_)
 	return 0;
 }
 
-Integer bar (InputStream in_, OutputStream out_)
+Integer bar (String[] arguments, InputStream in_, OutputStream out_)
 {	
 	variable String? keyArg = null;		
 
 	// #XXX: Ceylon `for` iterator is immutable
 	variable Integer i = 0;
-	while (i < process.arguments.size) 
+	while (i < arguments.size) 
 	{
-		value argument = process.arguments[i++];		
+		value argument = arguments[i++];		
 		if (! exists argument) { continue; }
 		switch (argument)
 		case ("-K" | "--key") {
-			if (++i == process.arguments.size) { fail("'key' requires an argument"); return 1; }
-			keyArg = process.arguments[i];
+			if (++i == arguments.size) { fail("'key' requires an argument"); return 1; }
+			keyArg = arguments[i];
 		}
 		// #XXX: Ceylon requires us to care about "default"
 		else { }
