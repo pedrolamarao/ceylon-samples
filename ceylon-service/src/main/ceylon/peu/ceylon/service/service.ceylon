@@ -8,7 +8,7 @@ shared final class Options
 {
 	static class NumberOption(Integer i) satisfies Option
 	{
-		Integer val = i;
+		shared Integer val = i;
 	}
 	
 	shared static Option putNumber (Integer val)
@@ -18,12 +18,17 @@ shared final class Options
 	
 	shared static Integer? popNumber (Option* options)
 	{
+		for (option in options) {
+			if (is NumberOption option) {
+				return option.val;
+			}
+		}
 		return null;
 	}
 	
 	static class NameOption(String s) satisfies Option
 	{
-		String val = s;
+		shared String val = s;
 	}
 	
 	shared static Option putName (String val)
@@ -33,6 +38,11 @@ shared final class Options
 	
 	shared static String? popName (Option* options)
 	{
+		for (option in options) {
+			if (is NameOption option) {
+				return option.val;
+			}
+		}
 		return null;
 	}
 

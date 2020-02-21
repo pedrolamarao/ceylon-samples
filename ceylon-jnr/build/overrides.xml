@@ -1,0 +1,12 @@
+<overrides>
+  <artifact groupId='com.github.jnr' artifactId='jnr-ffi' version='2.1.11'>
+    <add groupId='com.github.jnr' artifactId='jffi' version='1.2.22' shared='true' />
+    <add groupId='org.ow2.asm' artifactId='asm-commons' version='7.1' shared='true' />
+    <add groupId='org.ow2.asm' artifactId='asm-analysis' version='7.1' shared='true' />
+    <add groupId='org.ow2.asm' artifactId='asm-tree' version='7.1' shared='true' />
+    <add groupId='org.ow2.asm' artifactId='asm' version='7.1' shared='true' />
+    <add groupId='org.ow2.asm' artifactId='asm-util' version='7.1' shared='true' />
+    <add groupId='com.github.jnr' artifactId='jnr-a64asm' version='1.0.0' shared='true' />
+    <add groupId='com.github.jnr' artifactId='jnr-x86asm' version='1.0.2' shared='true' />
+  </artifact>
+</overrides>

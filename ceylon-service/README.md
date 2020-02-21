@@ -32,6 +32,8 @@ Currently, we cannot convince `ServiceLoader` to find our implementation.
 
 Apparently, the build tool fails to include `META-INF/services/peu.ceylon.service.Service` inside the module.
 
+We have tried both `--resource` and `--resource-root` to no avail.
+
 ## Test Source Separation
 
 Currently, we don't know how to separate white-box test sources from the main module.

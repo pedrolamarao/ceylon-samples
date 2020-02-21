@@ -15,5 +15,5 @@ module peu.ceylon.jnr "1.0.0"
 	import maven:"org.ow2.asm:asm-tree" "7.1";
 	import maven:"org.ow2.asm:asm-util" "7.1";
 	// #XXX: Ceylon 1.3.3 fails with "cannot find module artifact ..."
-	import maven:"org.apache.logging.log4j:log4j-api" "2.12.0";
+	// import maven:"org.apache.logging.log4j:log4j-api" "2.13.0";
 }

@@ -28,12 +28,6 @@ Three source sets are provided:
 
 Notes in the source code are annotated as `#XXX` comments.
 
-## `ResourceBundle`
-
-Currently, this component explodes when trying to use `ResourceBundle` for localization.
-
-Apparently, the build tool fails to include `src/main/resources` inside the module.
-
 ## Test Source Separation
 
 Currently, we don't know how to separate white-box test sources from the main module.
